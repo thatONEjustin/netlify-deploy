@@ -1,0 +1,43 @@
+---
+import Menu from "@components/menu/Menu.astro";
+import { menu_data } from "@js/data/menu";
+---
+
+<header class="xl:sticky xl:top-0 z-50">
+  <div class="fancy-border bg-black">
+    <div class="container mx-auto w-11/12 md:w-full flex flex-col sm:flex-row justify-between items-center py-3">
+      <a href="/" class="text-3xl flex items-baseline no-underline">
+        <i class="text-3xl sm:text-4xl nf nf-dev-terminal text-pink mr-2"> </i>
+        <h1>i'm justin&nbsp;<div class="text-cullen-300 min-w-fit">a full stack developer</div></h1>
+        <span class="sr-only">I'm Justin Paelmo, full stack developer</span>
+      </a>
+      <Menu transition:persist items={menu_data} />
+    </div>
+  </div>
+</header>
+
+<style lang="tailwind">
+header {
+  h1 {
+    @apply relative items-start justify-center -mt-1 text-2xl;
+    @apply text-yellow;
+    @apply transition-all;
+
+    @screen sm {
+      @apply flex text-3xl flex-col;
+    }
+
+    @screen md {
+      @apply text-4xl;
+    }
+
+    @screen lg {
+      @apply flex-col;
+    }
+
+    @screen xl {
+      @apply flex-row;
+    }
+  }
+}
+</style>

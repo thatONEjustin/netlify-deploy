@@ -1,0 +1,90 @@
+---
+const { item } = Astro.props;
+const { href } = item;
+
+const active = (url_test:string) => {
+  return ( url_test == Astro.url.pathname ) ? 'active' : ''
+}
+---
+<script>
+const options = {
+  behavior: 'smooth',
+  block: 'start'
+}
+
+document.addEventListener('astro:page-load', () => {
+  const buttons = document.getElementsByClassName('menu-item')
+
+  const cleaner = () => {
+    for(var button of buttons) {
+      button.classList.remove('active')
+    }
+  }
+
+  let current:EventTarget
+
+  const scroll_click = (event:Event) => {
+    event.preventDefault()
+    if(!event.currentTarget.dataset.scroll) return;
+
+    current = event.currentTarget
+
+    cleaner()
+    document.getElementById(current.dataset.scroll).scrollIntoView(options)
+    current.classList.add('active')
+  }
+
+  for(var button of buttons) {
+    if(!button.classList.contains('scrollTo')) continue
+
+    button.addEventListener('click', scroll_click, false)
+  }
+})
+</script>
+<li>
+  {item.scrollTo == null
+  ? 
+  <a {href} class=`menu-item ${active(href)}`>
+    <i class={`text-lg nf ${item.icon} pr-1`}></i>
+    {item.label}
+  </a>
+  :
+  <a data-scroll={item.scrollTo} {href} class="cursor-pointer menu-item scrollTo">
+    <i class={`text-lg nf ${item.icon} pr-1`}></i>
+    {item.label}
+  </a>
+  }
+</li>
+
+<style lang="tailwind">
+li {
+  @apply border-r-[1px] border-darker pr-3 mr-3 last:mr-0;
+
+  a {
+    @apply relative text-darker-300 transition-all;
+    @apply no-underline;
+    
+    &::after {
+      @apply absolute -bottom-3 left-0;
+      content: '';
+      @apply h-[2px] w-0 bg-cyan origin-center transition-all;
+    }
+
+    &:hover {
+      @apply text-cyan;
+
+      &::after {
+        @apply w-full;
+      }
+    }
+
+    &.active {
+      @apply text-green;
+
+      &::after {
+        @apply bg-green w-full;
+      }
+    }
+  }
+}
+</style>

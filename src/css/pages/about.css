@@ -1,0 +1,12 @@
+#about-me {
+  .justin-container {
+    p {
+      @apply text-2xl;
+    }
+  }
+
+  .about-timeframe {
+    @apply fancy-border pb-1 mb-3 text-pink;
+    @apply flex flex-row items-center justify-between;
+  }
+}

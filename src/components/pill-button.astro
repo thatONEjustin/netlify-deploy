@@ -1,0 +1,119 @@
+---
+const { url:href = "#", target, class:className  } = Astro.props;
+---
+
+<a class={className} {href} {target}>
+  <slot>Button Text</slot>
+</a>
+
+<style lang="postcss">
+a {
+  @apply relative;
+  @apply px-8 py-4 text-center text-darker font-bold transition-all;
+  @apply min-w-[140px];
+  @apply no-underline;
+
+  &:after {
+    @apply absolute bottom-0 left-0 w-full h-[2px] transition-all;
+    @apply -z-10;
+    transform-origin: bottom center;
+    content: ' ';
+
+    animation: grow-out 175ms ease-out forwards;
+  }
+
+  @keyframes grow-in {
+    from {
+      @apply h-[2px];
+    }
+    to {
+      @apply h-full rounded-md;
+    }
+  }
+
+  @keyframes grow-out {
+    from {
+      @apply h-full;
+    }
+    to {
+      @apply h-[2px];
+    }
+  }
+
+  &:hover {
+    @apply rounded-lg;
+
+    &:after {
+      animation: grow-in 175ms ease-in forwards;
+    }
+  }
+
+  &.default {
+    @apply text-darker;
+
+    &:hover {
+      @apply border-transparent text-light bg-darker;
+    }
+  }
+
+  &.green {
+    @apply text-green;
+
+    &:after {
+      @apply bg-green;
+    }
+
+    &:hover {
+      @apply text-darker;
+    }
+  }
+
+  &.cyan {
+    @apply text-cyan;
+
+    &:after {
+      @apply bg-cyan;
+    }
+
+    &:hover {
+      @apply text-darker bg-cyan;
+    }
+  }
+
+  &.pink {
+    @apply text-pink;
+
+    &:after {
+      @apply bg-pink;
+    }
+
+    &:hover {
+      @apply text-darker bg-pink;
+    }
+  }
+
+  &.purple {
+    @apply text-purple;
+
+    &:after {
+      @apply bg-purple;
+    }
+
+    &:hover {
+      @apply text-darker bg-purple;
+    }
+  }
+
+  &.yellow {
+    @apply text-yellow;
+
+    &:after {
+      @apply bg-yellow;
+    }
+
+    &:hover {
+      @apply text-darker bg-yellow;
+    }
+  }
+}
+</style>

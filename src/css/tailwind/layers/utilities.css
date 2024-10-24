@@ -1,0 +1,29 @@
+@layer utilities {
+  .fancy-border {
+    @apply relative;
+
+    &:after {
+      @apply absolute h-[2px] w-full bg-gradient-to-r from-pink to-cyan bottom-0 left-0;
+      /*@apply opacity-30;*/
+      content: ' ';
+    }
+  }
+
+  .fancy-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-pink to-cyan;
+  }
+
+  .justin-container {
+    @apply container mx-auto;
+    @apply px-7;
+    @apply w-full;
+    @apply relative;
+
+    @screen md {
+    }
+
+    @screen xl {
+      @apply max-w-4xl px-0;
+    }
+  }
+}

@@ -4,7 +4,7 @@ Just expanding / continuing my own learning!
 Going to use netlify for several upcoming projects
 that require good stable hosting for cheap.
 
-# Built on Astro
+## Built on Astro
 
 To run locally simply:
 
