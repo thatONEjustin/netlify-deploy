@@ -20,11 +20,11 @@ const { items:slides = [] } = Astro.props
   }"
   x-swiper="swiperOptions">
   <div class="swiper-wrapper">
-    {slides.map(item =>
+    {slides.map(( item:any ) =>
       <SwiperSlide>
         <h2>{item.data.title}</h1>
 
-        {item.render().then(({Content}) => <Content />)}
+        {item.render().then(({Content}:any) => <Content />)}
       </SwiperSlide>
     )}
   </div>

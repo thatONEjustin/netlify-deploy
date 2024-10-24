@@ -3,6 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
+    "noUnusedLocals": false,
     "paths": {
       "@layouts/*": [
         "src/layouts/*"

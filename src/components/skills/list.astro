@@ -27,9 +27,10 @@ import 'swiper/css/navigation';
     buttons[0].classList.add('active')
 
     for(var button of buttons) {
-      button.addEventListener('click', event => {
+      button.addEventListener('click', (event:Event) => {
         if(event.currentTarget == null) return;
-        slideTo(event.currentTarget.id)
+        const current = event.currentTarget as Element
+        slideTo(current.id)
       })
     }
 

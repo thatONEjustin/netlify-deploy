@@ -25,13 +25,17 @@ document.addEventListener('astro:page-load', () => {
 
   const scroll_click = (event:Event) => {
     event.preventDefault()
-    if(!event.currentTarget.dataset.scroll) return;
 
-    current = event.currentTarget
+    if(event.currentTarget == null) return
 
-    cleaner()
-    document.getElementById(current.dataset.scroll).scrollIntoView(options)
-    current.classList.add('active')
+    const current = event.currentTarget as HTMLElement
+    const scroll = (current.dataset.scroll) ? current.dataset.scroll : ''
+
+
+    document.getElementById(scroll)!.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
   }
 
   for(var button of buttons) {
